@@ -7960,6 +7960,9 @@ unsafe extern "C" {
     pub fn libafl_qemu_run() -> ::std::os::raw::c_int;
 }
 unsafe extern "C" {
+    pub fn libafl_qemu_run_single_cpu(cpu_index: ::std::os::raw::c_int) -> ::std::os::raw::c_int;
+}
+unsafe extern "C" {
     pub fn libafl_set_qemu_env(env: *mut CPUArchState);
 }
 #[repr(C)]

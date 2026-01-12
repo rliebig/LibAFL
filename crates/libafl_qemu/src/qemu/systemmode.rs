@@ -6,6 +6,7 @@ use std::{
     slice,
 };
 
+// use libafl_qemu_sys::libafl_qemu_run_single_cpu;
 use libafl_qemu_sys::{
     GuestAddr, GuestPhysAddr, GuestUsize, GuestVirtAddr, libafl_load_qemu_snapshot,
     libafl_page_from_addr, libafl_qemu_current_paging_id, libafl_qemu_run,
@@ -246,6 +247,12 @@ impl Qemu {
     pub(super) unsafe fn run_inner(&self) {
         unsafe {
             libafl_qemu_run();
+        }
+    }
+
+    fn run_single_cpu(&self, cpu_index: i32) {
+        unsafe {
+            libafl_qemu_sys::libafl_qemu_run_single_cpu(cpu_index);
         }
     }
 

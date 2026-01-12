@@ -30,6 +30,7 @@ use libafl_qemu_sys::{
 };
 #[cfg(feature = "systemmode")]
 use libafl_qemu_sys::{libafl_qemu_remove_hw_breakpoint, libafl_qemu_set_hw_breakpoint};
+
 use num_traits::Num;
 use strum::IntoEnumIterator;
 
@@ -1337,6 +1338,12 @@ pub mod pybind {
         fn run(&self) {
             unsafe {
                 self.qemu.run().unwrap();
+            }
+        }
+
+        fn run_single_cpu(&self, cpu_index: i32) {
+            unsafe {
+                libafl_qemu_run_single_cpu(cpu_index);
             }
         }
 
